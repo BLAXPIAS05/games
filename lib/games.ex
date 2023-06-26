@@ -34,13 +34,25 @@ defmodule Games.RockPaperScissors do
     ai_choice = Enum.random([:rock, :paper, :scissors])
     user_choice = IO.gets("Choose rock, paper, or scissors\n") |> String.trim() |> String.to_atom()
     cond do
-      ai_choice == :rock and user_choice == :scissors -> "You lose! Rock beats scissors."
-      ai_choice == :scissors and user_choice == :paper -> "You lose! Scissors beats paper."
-      ai_choice == :paper and user_choice == :rock -> "You lose! Paper beats rock."
-      ai_choice == :rock and user_choice == :paper -> "You win! Paper beats rock."
-      ai_choice == :paper and user_choice == :scissors -> "You win! Scissors beats paper."
-      ai_choice == :scissors and user_choice == :rock -> "You win! Rock beats scissors."
       ai_choice == user_choice -> "Draw"
+      beats?(ai_choice, user_choice) -> "You lose! #{ai_choice} beats #{user_choice}."
+      :otherwise -> "You win! #{user_choice} beats #{ai_choice}."
     end
+  end
+
+  defp beats?(:rock, :scissors) do
+    true
+  end
+
+  defp beats?(:paper, :rock) do
+    true
+  end
+
+  defp beats?(:scissors, :paper) do
+    true
+  end
+
+  defp beats?(_, _) do
+    false
   end
 end

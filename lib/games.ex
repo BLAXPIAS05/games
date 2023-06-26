@@ -27,20 +27,20 @@ defmodule Games.GuessingGame do
       int != random_int-> "Incorrect!"
     end
   end
+end
 
-  defmodule Games.RockPaperScissors do
-    def play do
-      ai_choice = Enum.random([:rock, :paper, :scissors])
-      user_choice = IO.gets("Choose :rock, :paper, or :scissors\n") |> String.to_atom()
-      cond do
-        ai_choice == :rock and user_choice == :scissors -> "You lose! Rock beats scissors."
-        ai_choice == :scissors and user_choice == :paper -> "You lose! Scissors beats paper."
-        ai_choice == :paper and user_choice == :rock -> "You lose! Paper beats rock."
-        ai_choice == :rock and user_choice == :paper -> "You win! Paper beats rock."
-        ai_choice == :paper and user_choice == :scissors -> "You win! Scissors beats paper."
-        ai_choice == :scissors and user_choice == :rock -> "You win! Rock beats scissors."
-        ai_choice == user_choice -> "Draw"
-      end
+defmodule Games.RockPaperScissors do
+  def play do
+    ai_choice = Enum.random([:rock, :paper, :scissors])
+    user_choice = IO.gets("Choose rock, paper, or scissors\n") |> String.to_atom()
+    cond do
+      ai_choice == :rock and user_choice == :scissors -> "You lose! Rock beats scissors."
+      ai_choice == :scissors and user_choice == :paper -> "You lose! Scissors beats paper."
+      ai_choice == :paper and user_choice == :rock -> "You lose! Paper beats rock."
+      ai_choice == :rock and user_choice == :paper -> "You win! Paper beats rock."
+      ai_choice == :paper and user_choice == :scissors -> "You win! Scissors beats paper."
+      ai_choice == :scissors and user_choice == :rock -> "You win! Rock beats scissors."
+      ai_choice == user_choice -> "Draw"
     end
   end
 end

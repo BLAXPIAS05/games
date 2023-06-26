@@ -32,7 +32,7 @@ end
 defmodule Games.RockPaperScissors do
   def play do
     ai_choice = Enum.random([:rock, :paper, :scissors])
-    user_choice = IO.gets("Choose rock, paper, or scissors\n") |> String.to_atom()
+    user_choice = IO.gets("Choose rock, paper, or scissors\n") |> String.trim() |> String.to_atom()
     cond do
       ai_choice == :rock and user_choice == :scissors -> "You lose! Rock beats scissors."
       ai_choice == :scissors and user_choice == :paper -> "You lose! Scissors beats paper."
